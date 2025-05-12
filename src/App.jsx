@@ -266,7 +266,12 @@ function App() {
                     type="number"
                     id="article-qty"
                     value={newArticle.qty}
-                    onChange={(e) => setNewArticle({ ...newArticle, qty: e.target.value })}
+                    onChange={(e) => {
+                      const value = parseInt(e.target.value, 10);
+                      if (value > 0 || e.target.value === "") {
+                        setNewArticle({ ...newArticle, qty: e.target.value });
+                      }
+                    }}
                     placeholder="Qty"
                     min="0"
                     className="form-input"
@@ -280,7 +285,12 @@ function App() {
                     type="number"
                     id="article-price"
                     value={newArticle.selling_price}
-                    onChange={(e) => setNewArticle({ ...newArticle, selling_price: e.target.value })}
+                    onChange={(e) => {
+                      const value = parseFloat(e.target.value);
+                      if (value > 0 || e.target.value === "") {
+                        setNewArticle({ ...newArticle, selling_price: e.target.value });
+                      }
+                    }}
                     placeholder="Price"
                     min="0"
                     step="0.01"
